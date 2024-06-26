@@ -9,6 +9,7 @@
             <div v-for="(wpis, index) in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
                 <p>id: {{ index }}</p>
                 <p>{{ wpis }}</p>
+                <button  class="bg-blue-600 rounded text-white p-4" @click="deleteWpis(index)">usun</button>
             </div>
         </div>
         <div class="flex justify-center flex-col">
@@ -28,12 +29,18 @@ export default {
         }
     },
     methods: {
-        async dodajWpis() {
-            await day2_backend.dodaj_wpis(this.nowyBlog);
-        },
         async Pobierzwpisy() {
             this.wpisy = await day2_backend.odczytaj_wpisy();          
+        },
+        async dodajWpis() {
+            await day2_backend.dodaj_wpis(this.nowyBlog);
+            await this.Pobierzwpisy()
+        },
+        async deleteWpis(index) {
+            await day2_backend.usun_wpis(index);
+            await this.Pobierzwpisy();
         }
+        
     },
     async mounted() {
         this.Pobierzwpisy()
