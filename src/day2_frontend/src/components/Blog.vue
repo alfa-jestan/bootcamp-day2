@@ -6,7 +6,8 @@
         </div>
         pozdrawia ambrorzy co dzieci tworzy
         <div class="grid mx-6 gap-4 my-4">
-            <div v-for="wpis in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
+            <div v-for="(wpis, index) in wpisy" class="drop-shadow-xl bg-stone-300 p-4">
+                <p>id: {{ index }}</p>
                 <p>{{ wpis }}</p>
             </div>
         </div>
